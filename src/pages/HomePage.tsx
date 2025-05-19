@@ -14,26 +14,25 @@ const HomePage: React.FC = () => {
         <div className="absolute left-[10%] top-1/2 -translate-y-1/2">
           <motion.div
             animate={{
-              rotateY: [0, 360],
-              rotateX: [0, 360],
+              rotateY: [0, 360, 180, 360, 0],
+              rotateX: [0, 180, 360, 180, 0],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "linear",
+              ease: "easeInOut",
+              times: [0, 0.25, 0.5, 0.75, 1],
             }}
-            className="w-40 h-40 relative"
+            className="w-32 h-32 relative"
             style={{
               transformStyle: "preserve-3d",
             }}
           >
-            {/* Cube Faces */}
+            {/* Cube Faces - Reduced to 4 faces */}
             <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" />
-            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateY(90deg) translateZ(20px)' }} />
-            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateY(-90deg) translateZ(20px)' }} />
-            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateX(90deg) translateZ(20px)' }} />
-            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateX(-90deg) translateZ(20px)' }} />
-            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'translateZ(20px)' }} />
+            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateY(90deg) translateZ(16px)' }} />
+            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'rotateY(-90deg) translateZ(16px)' }} />
+            <div className="absolute inset-0 border-2 border-[var(--primary-accent-rgb)]/30 bg-[var(--primary-accent-rgb)]/5 backdrop-blur-sm" style={{ transform: 'translateZ(16px)' }} />
           </motion.div>
         </div>
 
@@ -41,65 +40,48 @@ const HomePage: React.FC = () => {
         <div className="absolute right-[10%] top-1/2 -translate-y-1/2">
           <motion.div
             animate={{
-              rotateY: [0, -360],
-              rotateX: [0, -360],
+              rotateY: [0, -360, -180, -360, 0],
+              rotateX: [0, -180, -360, -180, 0],
             }}
             transition={{
-              duration: 20,
+              duration: 25,
               repeat: Infinity,
-              ease: "linear",
+              ease: "easeInOut",
+              times: [0, 0.25, 0.5, 0.75, 1],
             }}
-            className="w-40 h-40 relative"
+            className="w-32 h-32 relative"
             style={{
               transformStyle: "preserve-3d",
             }}
           >
-            {/* Sphere Faces */}
-            {[...Array(12)].map((_, i) => (
+            {/* Sphere Faces - Reduced to 6 faces */}
+            {[...Array(6)].map((_, i) => (
               <div
                 key={i}
                 className="absolute inset-0 border-2 border-[var(--secondary-accent-rgb)]/30 bg-[var(--secondary-accent-rgb)]/5 backdrop-blur-sm rounded-full"
                 style={{
                   transform: `
-                    rotateY(${i * 30}deg)
-                    rotateX(${i * 30}deg)
-                    translateZ(20px)
+                    rotateY(${i * 60}deg)
+                    translateZ(16px)
                   `,
                 }}
               />
             ))}
             
-            {/* Inner Glow */}
+            {/* Single Glow Effect */}
             <motion.div
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.2, 0.4, 0.2],
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.3, 0.2],
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
               className="absolute inset-4 rounded-full bg-[var(--secondary-accent-rgb)]/20 backdrop-blur-sm"
               style={{
-                transform: 'translateZ(10px)',
-              }}
-            />
-
-            {/* Core Glow */}
-            <motion.div
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[var(--secondary-accent-rgb)]/40"
-              style={{
-                transform: 'translateZ(15px)',
+                transform: 'translateZ(8px)',
               }}
             />
           </motion.div>
